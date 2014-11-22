@@ -18,14 +18,33 @@ function updateTime(){
 }
 
 function updateProgress(progress){
-	var elements = document.getElementsByClassName("fill");
-	if(progress <= 30){
+	
+	if(progress <= 30 && progress >0){
 		rotate = -180 + progress*180/30;
-		document.getElementById("demo").innerHTML = rotate;
-		$('.fill_right').css("background", "green");
+		$('.fill_right').css("-webkit-transform", "rotate(" + rotate +"deg)");
+		$('.fill_right').css("-ms-transform", "rotate(" + rotate +"deg)");
+		$('.fill_right').css("transform", "rotate(" + rotate +"deg)");
+		
+		$('.fill_left').css("-webkit-transform", "rotate(0deg)");
+		$('.fill_left').css("-ms-transform", "rotate(0deg)");
+		$('.fill_left').css("transform", "rotate(0deg)");
+		
+		$('.fill_right').css("z-index", "1");
+		$('.fill_left').css("z-index", "2");
 	}else{
-		document.getElementById("demo").innerHTML = progress;
-				$('.circle .fill_right').css("background", "green");
-
+		rotate = (progress-30)*180/30;
+		
+		$('.fill_left').css("-webkit-transform", "rotate(" + rotate +"deg)");
+		$('.fill_left').css("-ms-transform", "rotate(" + rotate +"deg)");
+		$('.fill_left').css("transform", "rotate(" + rotate +"deg)");
+		
+		$('.fill_right').css("-webkit-transform", "rotate(0deg)");
+		$('.fill_right').css("-ms-transform", "rotate(0deg)");
+		$('.fill_right').css("transform", "rotate(0deg)");
+		
+		$('.fill_right').css("z-index", "2");
+		$('.fill_left').css("z-index", "1");
 	}
+	
+	 document.getElementById("second").innerHTML = progress;
 }
